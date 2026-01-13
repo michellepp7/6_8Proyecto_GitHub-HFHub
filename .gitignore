@@ -1,0 +1,53 @@
+# Directorios y archivos a ignorar
+
+# Entorno
+.env
+.env.local
+
+# Outputs (modelos entrenados, checkpoints)
+outputs/
+*.pth
+*.bin
+
+# Data (datasets descargados)
+data/*
+!data/.gitkeep
+
+# Cache y temporales
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Entorno virtual
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Datos
+data/
+datasets/
+
+# Logs
+*.log
+logs/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Git
+.git/

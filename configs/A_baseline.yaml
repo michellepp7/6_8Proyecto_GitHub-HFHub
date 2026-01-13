@@ -1,0 +1,21 @@
+# Configuración - Flujo A: Inferencia Baseline
+# Modelo preentrenado de Hugging Face Hub para análisis de sentimiento
+#
+# Este es el FLUJO A1: Predicción sin fine-tuning
+# Usa un modelo ya entrenado en datos de sentimiento
+
+# Modelo preentrenado: DistilBERT fine-tuned en SST-2
+# - Parámetros: 67M
+# - Accuracy: 93%
+# - Tiempo predicción: ~3 segundos
+task: sentiment-analysis
+model_id: distilbert-base-uncased-finetuned-sst-2-english
+
+# Texto de ejemplo para predicción
+text: "I love working with Hugging Face."
+
+# Cache para descargar el modelo
+cache_dir: ./outputs
+
+# Versión de transformers mínima recomendada
+min_transformers_version: "4.30.0"

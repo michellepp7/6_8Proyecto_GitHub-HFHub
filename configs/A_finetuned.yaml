@@ -1,0 +1,23 @@
+# Configuración - Flujo A: Inferencia con Modelo Fine-tuneado
+# Usa el modelo que entrenaste y publicaste en Flujo B
+#
+# Este es el FLUJO A2: Predicción con TU modelo entrenado
+# Descarga el modelo desde tu repositorio de Hugging Face Hub
+
+# ⚠️ IMPORTANTE: Reemplazar con tu información
+# 1. Cambia "TU_USUARIO_HF" por tu usuario de Hugging Face (ej: "maria_garcia")
+# 2. El nombre del repo debe coincidir con el de B_train.yaml
+# Ejemplo correcto:
+#   model_id: maria_garcia/6_8Proyecto_GitHub+HFHub
+
+task: sentiment-analysis
+model_id: "TU_USUARIO_HF/6_8Proyecto_GitHub+HFHub"
+
+# Donde descargar/cachear el modelo
+cache_dir: ./outputs
+
+# Texto de ejemplo para predicción
+text: "I love working with Hugging Face."
+
+# Versión de transformers mínima recomendada
+min_transformers_version: "4.30.0"

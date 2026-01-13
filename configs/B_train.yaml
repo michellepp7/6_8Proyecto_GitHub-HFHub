@@ -1,0 +1,76 @@
+# Configuración - Flujo B: Fine-tuning y Push a Hub
+# Parámetros de entrenamiento, dataset y modelo a publicar
+#
+# FLUJO B: Entrena un modelo DistilBERT con dataset IMDb
+# Tiempo estimado: ~8 minutos (GPU RTX 4080)
+# Resultado: modelo publicado en Hugging Face Hub
+
+# ============================================
+# DATASET
+# ============================================
+# Dataset: IMDb Reviews (análisis de sentimientos)
+# - 25K ejemplos de entrenamiento
+# - Tarea: clasificación binaria (positivo/negativo)
+dataset_id: imdb
+text_field: text
+label_field: label
+
+# Subsets para entrenamiento rápido
+# (usa todo el dataset: elimina estas líneas)
+train_subset: 5000   # Muestras de entrenamiento
+eval_subset: 1000    # Muestras de validación
+# Nota: Con estos valores = ~8 min GPU / ~45 min CPU
+
+# ============================================
+# MODELO
+# ============================================
+# Modelo base: DistilBERT (67M parámetros)
+base_model_id: distilbert-base-uncased
+
+# ============================================
+# HIPERPARÁMETROS DE ENTRENAMIENTO
+# ============================================
+num_train_epochs: 1
+per_device_train_batch_size: 16
+per_device_eval_batch_size: 16
+learning_rate: 2e-5
+weight_decay: 0.01
+warmup_steps: 100
+max_length: 128
+
+# ============================================
+# OPTIMIZACIÓN
+# ============================================
+# Mixed precision training (reduce memoria, mantiene precisión)
+fp16: true    # Activado para GPU
+bf16: false   # Usa fp16, no bf16
+
+# ============================================
+# SALIDA Y PUBLICACIÓN
+# ============================================
+# Directorio local de salida
+output_dir: outputs/finetuned
+
+# Publicar en Hugging Face Hub
+push_to_hub: true
+
+# ⚠️ IMPORTANTE: Configurar tu usuario
+# Cambia "TU_USUARIO_HF" por tu usuario real de Hugging Face
+# Ejemplo correcto:
+#   hf_repo_id: maria_garcia/6_8Proyecto_GitHub+HFHub_ejemplo
+hf_repo_id: "XXXXX/6_8Proyecto_GitHub+HFHub_ejemplo"
+hf_private: false  # Publico (para que otros lo usen)
+
+# Token de autenticación
+# Se carga automáticamente desde .env (HF_TOKEN)
+# Si falla, usa: huggingface-cli login
+
+# ============================================
+# NOTAS IMPORTANTES
+# ============================================
+# 1. El hf_repo_id debe coincidir con A_finetuned.yaml
+# 2. Requiere HF_TOKEN válido en .env
+# 3. Después del entrenamiento, el modelo estará en:
+#    https://huggingface.co/TU_USUARIO_HF/6_8Proyecto_GitHub+HFHub
+# 4. Verifica que el repo se creó: huggingface-cli repo create 6_8Proyecto_GitHub+HFHub
+min_transformers_version: "4.30.0"
